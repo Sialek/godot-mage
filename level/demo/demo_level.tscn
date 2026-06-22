@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bxct4qd7dr8d4"]
+
+[ext_resource type="Script" uid="uid://d1hxvodq8uip1" path="res://level/demo/demo_level.gd" id="1_ot3nl"]
+[ext_resource type="PackedScene" uid="uid://clf4k36570pcq" path="res://player/player.tscn" id="2_0vhs4"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_qg6gb"]
+
+[sub_resource type="Sky" id="Sky_ot3nl"]
+sky_material = SubResource("PhysicalSkyMaterial_qg6gb")
+
+[sub_resource type="Environment" id="Environment_0vhs4"]
+background_mode = 2
+sky = SubResource("Sky_ot3nl")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+
+[node name="DemoLevel" type="Node3D" unique_id=2130346313]
+script = ExtResource("1_ot3nl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1753924902]
+environment = SubResource("Environment_0vhs4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1366143644]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 5, 0)
+
+[node name="Geometry" type="Node3D" parent="." unique_id=270959081]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Geometry" unique_id=1958418175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+use_collision = true
+size = Vector3(50, 0.5, 50)
+
+[node name="Player" parent="." unique_id=397251959 instance=ExtResource("2_0vhs4")]
