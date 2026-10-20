@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1hxvodq8uip1" path="res://level/demo/demo_level.gd" id="1_ot3nl"]
 [ext_resource type="PackedScene" uid="uid://clf4k36570pcq" path="res://player/player.tscn" id="2_0vhs4"]
+[ext_resource type="Script" uid="uid://ub7y1iqv7iy1" path="res://level/worldgen/world_gen.gd" id="3_pee8r"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_qg6gb"]
 
@@ -19,6 +20,11 @@ ssao_enabled = true
 ssil_enabled = true
 sdfgi_enabled = true
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pee8r"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_pee8r"]
+noise = SubResource("FastNoiseLite_pee8r")
+
 [node name="DemoLevel" type="Node3D" unique_id=2130346313]
 script = ExtResource("1_ot3nl")
 
@@ -33,6 +39,11 @@ transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.70710
 [node name="CSGBox3D" type="CSGBox3D" parent="Geometry" unique_id=1958418175]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 use_collision = true
-size = Vector3(50, 0.5, 50)
+size = Vector3(4, 0.5, 4)
 
 [node name="Player" parent="." unique_id=397251959 instance=ExtResource("2_0vhs4")]
+
+[node name="WorldGen" type="Node" parent="." unique_id=1166946789]
+script = ExtResource("3_pee8r")
+noiseTexture = SubResource("NoiseTexture3D_pee8r")
+metadata/_custom_type_script = "uid://ub7y1iqv7iy1"

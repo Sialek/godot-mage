@@ -7,13 +7,17 @@ const JUMP_VELOCITY = 10.0
 @onready var camera: Camera3D = $Camera3D
 
 func _ready() -> void:
-  Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+  #Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
   
+  PlayerManager.player = self
+
+
 func _unhandled_input(event: InputEvent) -> void:
   if event is InputEventMouseMotion:
     rotate_y(-event.relative.x * 0.005)
     camera.rotate_x(-event.relative.y * 0.005)
     camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+
 
 func _physics_process(delta: float) -> void:
   # Add the gravity.
@@ -36,3 +40,4 @@ func _physics_process(delta: float) -> void:
     velocity.z = move_toward(velocity.z, 0, SPEED)
 
   move_and_slide()
+  
