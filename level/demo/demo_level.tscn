@@ -21,9 +21,10 @@ ssil_enabled = true
 sdfgi_enabled = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_pee8r"]
-
-[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_pee8r"]
-noise = SubResource("FastNoiseLite_pee8r")
+noise_type = 3
+seed = 42
+frequency = 0.008
+fractal_octaves = 4
 
 [node name="DemoLevel" type="Node3D" unique_id=2130346313]
 script = ExtResource("1_ot3nl")
@@ -45,5 +46,6 @@ size = Vector3(4, 0.5, 4)
 
 [node name="WorldGen" type="Node" parent="." unique_id=1166946789]
 script = ExtResource("3_pee8r")
-noiseTexture = SubResource("NoiseTexture3D_pee8r")
+view_distance_m = 1000.0
+height_noise = SubResource("FastNoiseLite_pee8r")
 metadata/_custom_type_script = "uid://ub7y1iqv7iy1"
